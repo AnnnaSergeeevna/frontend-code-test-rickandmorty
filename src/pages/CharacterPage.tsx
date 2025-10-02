@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CharacterPage.module.css";
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 import { CharacterQuery, CharacterQueryVariables } from "../generated/graphql";
-
 const query = gql`
   query Character ($id: ID!) {
     character(id: $id) {
@@ -56,9 +55,14 @@ const CharacterPage = () => {
   return (
     <>
       <div className={styles.container}>
-        <button className={styles.prevButton} onClick={() => navigate(-1)}>PREV PAGE</button>
         <div className={styles.characterOverview}>
-          <h2 className={styles.header}>{character.name}</h2>
+          <div className={styles.blockHeader}>
+            <button className={styles.prevButton} onClick={() => navigate(-1)}>
+              <img className={styles.arrow} src="/arrow-left.svg" alt="arrow" />
+              {/* <span>PREV PAGE</span> */}
+            </button>
+            <h2 className={styles.header}>{character.name}</h2>
+          </div>
           {character.image && <img src={character.image} alt={character.name ?? "Unknown"} />}
           <p className={styles.characterProp}>Status: {character.status}</p>
           <p className={styles.characterProp}>Species: {character.species}</p>
@@ -77,7 +81,8 @@ const CharacterPage = () => {
                   </div>
                 ))}
             </div>
-          </div></div>
+          </div>
+        </div>
       </div>
 
 

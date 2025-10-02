@@ -8,6 +8,14 @@
 
 }
 
+.blockHeader {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    align-items: center;
+    gap: 1rem;
+}
+
 .header {
     display: flex;
     justify-content: center;
@@ -18,13 +26,16 @@
 }
 
 .prevButton {
-    margin-top: 2rem;
-    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     width: 160px;
     height: 55px;
+    margin-bottom: 1rem;
     border: none;
-    font-size: large;
-    background-color: #90d9b9;
+    font-size: 16px;
+    background-color: #ebfbf4;
     color: #2B2B2B;
     border-radius: 30px;
     font-family: 'Inter', sans-serif;
@@ -34,9 +45,14 @@
 }
 
 .prevButton:hover {
-    transition: transform 0.3s;
-    transform: scale(1.1);
+    background-color: #d4f7e2;
 }
+
+.arrow {
+    width: 40px;
+    height: 40px;
+}
+
 
 .prevButton:active {
     box-shadow: 0 1px 8px#164a34
@@ -47,16 +63,15 @@
 }
 
 .characterOverview {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     text-align: center;
 
     img {
-        width: 500px;
-        max-width: 100%;
+        /* width: 500px; */
         border-radius: 20px;
-        border: 2px solid white;
         margin-top: 0.5rem;
         margin-bottom: 1rem;
     }
