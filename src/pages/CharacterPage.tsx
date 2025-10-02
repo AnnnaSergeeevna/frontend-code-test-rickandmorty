@@ -58,13 +58,11 @@ const CharacterPage = () => {
         <div className={styles.characterOverview}>
           <div className={styles.blockHeader}>
             <button className={styles.prevButton} onClick={() => navigate(-1)}>
-              <img className={styles.arrow} src="/arrow-left.svg" alt="arrow" />
-              {/* <span>PREV PAGE</span> */}
-            </button>
+              <img className={styles.arrow} src="/arrow-left.svg" alt="arrow" /></button>
             <h2 className={styles.header}>{character.name}</h2>
           </div>
           {character.image && <img src={character.image} alt={character.name ?? "Unknown"} />}
-          <p className={styles.characterProp}>Status: {character.status}</p>
+          <p className={styles.characterPropS}>Status: {character.status}</p>
           <p className={styles.characterProp}>Species: {character.species}</p>
           <p className={styles.characterProp}>Gender: {character.gender}</p>
           <div className={styles.episodes}>
