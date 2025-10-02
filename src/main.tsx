@@ -5,6 +5,7 @@ import { createClient, cacheExchange, fetchExchange } from "urql";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CharacterPage from "./pages/CharacterPage";
 import HomePage from "./pages/HomePage";
+import "./app/styles/globals.css";
 
 const client = createClient({
   url: "https://rickandmortyapi.com/graphql",
