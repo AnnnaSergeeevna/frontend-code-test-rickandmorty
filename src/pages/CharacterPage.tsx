@@ -1,9 +1,9 @@
 import { gql, useQuery } from "urql";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CharacterPage.module.css";
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, useState } from "react";
+import { useState } from "react";
 import { CharacterQuery, CharacterQueryVariables } from "../generated/graphql";
-import { Loader } from "../components/Loader";
+import { Loader } from "../components/Loader/Loader";
 const query = gql`
   query Character ($id: ID!) {
     character(id: $id) {
@@ -70,9 +70,9 @@ const CharacterPage = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.characterOverview}>
+        <div data-cy="character-overview" className={styles.characterOverview}>
           <div className={styles.blockHeader}>
-            <button className={styles.prevButton} onClick={() => navigate(-1)}>
+            <button data-cy="back-button" className={styles.prevButton} onClick={() => navigate(-1)}>
               <img className={styles.arrow} src="/arrow-left.svg" alt="arrow" /></button>
             <h2 className={styles.header}>{character.name}</h2>
           </div>
@@ -82,17 +82,17 @@ const CharacterPage = () => {
           <p className={styles.characterProp}>Gender: {character.gender}</p>
           <h3 className={styles.episodesHeader}>Episodes:</h3>
           <div className={styles.episodes}>
-            <div className={styles.episodeCarousel}>
+            <div data-cy="episode-carousel" className={styles.episodeCarousel}>
 
               <div className={styles.episodeTrack}>
                 {visibleEpisodes}
               </div>
               <div className={styles.carouselButtonGroup}>
-                <button className={styles.carouselButton} disabled={index === 0}
+                <button data-cy="carousel-prev" className={styles.carouselButton} disabled={index === 0}
                   onClick={() => setIndex((prev) => Math.max(prev - episodesPerPage, 0))}>
                   <img className={styles.arrowLeft} src="/arrow-left.svg" alt="arrow" />
                 </button>
-                <button className={styles.carouselButton} disabled={index + episodesPerPage >= episodes.length} onClick={() => setIndex((prev) => Math.min(prev + episodesPerPage, episodes.length - episodesPerPage))}>
+                <button data-cy="carousel-next" className={styles.carouselButton} disabled={index + episodesPerPage >= episodes.length} onClick={() => setIndex((prev) => Math.min(prev + episodesPerPage, episodes.length - episodesPerPage))}>
                   <img className={styles.arrowRight} src="/arrow-left.svg" alt="arrow" />
                 </button>
               </div>
