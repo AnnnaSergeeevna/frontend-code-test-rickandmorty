@@ -1,0 +1,65 @@
+html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #2B2B2B;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    color: #111;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* ============================
+   Container
+   ============================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 1940px;
+    padding: 40px 40px 30px 40px;
+    margin: 0 auto;
+}
+
+@media (max-width: 960px) {
+    .container {
+        padding: 24px 28px;
+    }
+}
+
+@media (max-width: 513px) {
+    .container {
+        padding: 20px 12px;
+    }
+}

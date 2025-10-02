@@ -1,0 +1,73 @@
+.container {
+    padding: 2rem;
+    background-color: #ebfbf4;
+}
+
+.charactersGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+}
+
+.characterCard {
+    width: 250px;
+    height: 320px;
+    text-align: center;
+    transition: transform 0.3s;
+    border-radius: 20px;
+    overflow: hidden;
+    /* border: solid 2px, #264B3C; */
+    box-shadow: 0 1px 8px #a9e7cc;
+    background-color: white;
+}
+
+.characterCard:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.characterImage {
+    width: 250px;
+    height: 230px;
+}
+
+.characterName {
+    margin-top: 1rem;
+    font-weight: 400;
+    font-size: large;
+    font-family: 'Inter', sans-serif;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    width: 150px;
+    height: 55px;
+    border: none;
+    background-color: #90d9b9;
+    color: #2B2B2B;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.pagination button:hover {
+    transition: transform 0.3s;
+    transform: scale(1.1);
+}
+
+.pagination button:active {
+    box-shadow: 0 1px 8px#164a34
+}
+
+.pagination button:disabled {
+    cursor: auto;
+}
