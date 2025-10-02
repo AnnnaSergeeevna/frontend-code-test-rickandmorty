@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CharacterPage.module.css";
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 import { CharacterQuery, CharacterQueryVariables } from "../generated/graphql";
+import { Loader } from "../components/Loader";
 const query = gql`
   query Character ($id: ID!) {
     character(id: $id) {
@@ -46,7 +47,7 @@ const CharacterPage = () => {
     variables: { id: id! },
   })
 
-  if (fetching) return <p>Loading...</p>;
+  if (fetching) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
   if (!data?.character) return <p>Character not found</p>;
 

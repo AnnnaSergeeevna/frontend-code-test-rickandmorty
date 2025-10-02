@@ -4,6 +4,7 @@ import styles from "./HomePage.module.css";
 import Header from "../components/Header/Header";
 import { useState } from "react";
 import { Characters } from "../generated/graphql";
+import { Loader } from "../components/Loader";
 
 
 export const query = gql`
@@ -32,8 +33,21 @@ const HomePage = () => {
   });
 
 
-  if (fetching) return <p>Loading...</p>;
+  if (fetching) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
+
+  const totalPages = data?.characters?.info?.pages || 1;
+
+  const getVisiblePages = () => {
+    const pages = [];
+    const start = Math.max(page - 2, 1);
+    const end = Math.min(page + 2, totalPages);
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    return pages;
+  };
+
 
   return (
     <>
@@ -44,19 +58,15 @@ const HomePage = () => {
             (character: NonNullable<Characters['results']>[number]) =>
               character && character.id && (
                 <Link to={`/character/${character.id}`} key={character.id} className={styles.characterCard}>
-
-                  <div key={character.id} className={styles.characterCard}>
-                    {character.image && (
-                      <img
-                        src={character.image}
-                        alt={character.name || "Unknown"}
-                        className={styles.characterImage}
-                      />
-                    )}
-                    <p className={styles.characterName}>{character.name || "Unknown"}</p>
-                  </div>
-                </Link>
-              )
+                  {character.image && (
+                    <img
+                      src={character.image}
+                      alt={character.name || "Unknown"}
+                      className={styles.characterImage}
+                    />
+                  )}
+                  <p className={styles.characterName}>{character.name || "Unknown"}</p>
+                </Link>)
           )
           }
         </div>
@@ -64,14 +74,25 @@ const HomePage = () => {
           <button
             disabled={!data?.characters?.info?.prev}
             onClick={() => setPage((prev) => (prev > 1 ? prev - 1 : prev))}
+            className={styles.arrowButton}
           >
-            PREV PAGE
+            <img className={styles.arrowLeft} src="/arrow-left.svg" alt="Prev" />
           </button>
+          {getVisiblePages().map((p) => (
+            <button
+              key={p}
+              className={`${styles.pageNumber} ${p === page ? styles.activePage : ""}`}
+              onClick={() => setPage(p)}
+            >
+              {p}
+            </button>
+          ))}
           <button
             disabled={!data?.characters?.info?.next}
-            onClick={() => setPage((prev) => prev + 1)}
+            onClick={() => setPage((prev) => (prev < totalPages ? prev + 1 : prev))}
+            className={styles.arrowButton}
           >
-            NEXT PAGE
+            <img className={styles.arrowRight} src="/arrow-left.svg" alt="Next" />
           </button>
         </div>
       </div>

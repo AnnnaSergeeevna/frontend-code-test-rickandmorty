@@ -1,0 +1,12 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: #ebfbf4;
+}
+
+.loader img {
+    width: 550px;
+    height: 150px;
+}
