@@ -1,15 +1,15 @@
 import { gql, useQuery } from "urql";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import Header from "../components/Header/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Characters } from "../generated/graphql";
 import { Loader } from "../components/Loader";
 
 
 export const query = gql`
-  query Home($page: Int!) {
-    characters(page: $page) {
+  query Home($page: Int!, $filter: FilterCharacter) {
+    characters(page: $page, filter: $filter) {
       results {
           id
           name
@@ -26,12 +26,20 @@ export const query = gql`
 `
 
 const HomePage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filters, setFilters] = useState<{ status?: string; gender?: string; }>({ status: searchParams.get("status") || undefined, gender: searchParams.get("gender") || undefined, });
   const [page, setPage] = useState(1);
   const [{ data, fetching, error }] = useQuery<{ characters: Characters }>({
     query: query,
-    variables: { page },
+    variables: { page, filter: filters },
   });
 
+  useEffect(() => {
+    const params: Record<string, string> = { page: String(page) };
+    if (filters.status) params.status = filters.status;
+    if (filters.gender) params.gender = filters.gender;
+    setSearchParams(params);
+  }, [filters, page, setSearchParams]);
 
   if (fetching) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
@@ -53,6 +61,46 @@ const HomePage = () => {
     <>
       <div className={styles.container}>
         <Header />
+        <div className={styles.filters}>
+          <div>
+            <h4 className={styles.statusContainer}>Status</h4>
+            {["alive", "dead", "unknown"].map((status) => (
+              <label key={status}>
+                <input className={styles.statusRadioButton}
+                  type="radio"
+                  name="status"
+                  value={status}
+                  checked={filters.status === status}
+                  onChange={(e) => {
+                    setFilters({ ...filters, status: e.target.value });
+                    setPage(1);
+                  }}
+                />
+                {status}
+              </label>
+            ))}
+          </div>
+
+          <div>
+            <h4 className={styles.genderContainer}>Gender</h4>
+            {["female", "male", "genderless", "unknown"].map((gender) => (
+              <label key={gender}>
+                <input className={styles.statusRadioButton}
+                  type="radio"
+                  name="gender"
+                  value={gender}
+                  checked={filters.gender === gender}
+                  onChange={(e) => {
+                    setFilters({ ...filters, gender: e.target.value });
+                    setPage(1);
+                  }}
+                />
+                {gender}
+              </label>
+            ))}
+          </div>
+        </div>
+
         <div className={styles.charactersGrid}>
           {data?.characters?.results?.map(
             (character: NonNullable<Characters['results']>[number]) =>

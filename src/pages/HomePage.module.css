@@ -3,6 +3,63 @@
     background-color: #ebfbf4;
 }
 
+.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: larger;
+    gap: 4rem;
+    margin-bottom: 2rem;
+}
+
+.statusContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.genderContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.statusRadioButton {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #90d9b9;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-bottom: -4px;
+    position: relative;
+}
+
+.statusRadioButton:checked {
+    border-color: #90d9b9;
+    background-color: white;
+}
+
+.statusRadioButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 6px #a9e7cc;
+}
+
+.statusRadioButton:checked::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    background: #a9e7cc;
+    border-radius: 50%;
+}
+
 .charactersGrid {
     display: flex;
     flex-wrap: wrap;
@@ -69,7 +126,6 @@
 
 .arrowButton:disabled {
     opacity: 0.5;
-    cursor: not-allowed;
 }
 
 .arrowButton:active {
