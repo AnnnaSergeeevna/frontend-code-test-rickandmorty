@@ -2,8 +2,8 @@ import { gql, useQuery } from "urql";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CharacterPage.module.css";
 import { useState } from "react";
-import { CharacterQuery, CharacterQueryVariables } from "../generated/graphql";
-import { Loader } from "../components/Loader/Loader";
+import { CharacterQuery, CharacterQueryVariables } from "../../generated/graphql";
+import { Loader } from "../../components/Loader/Loader";
 const query = gql`
   query Character ($id: ID!) {
     character(id: $id) {

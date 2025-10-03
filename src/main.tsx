@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "urql";
 import { createClient, cacheExchange, fetchExchange } from "urql";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CharacterPage from "./pages/CharacterPage";
-import HomePage from "./pages/HomePage";
+import CharacterPage from "./pages/CharacterPage/CharacterPage";
+import HomePage from "./pages/HomePage/HomePage";
 import "./app/styles/globals.css";
 
 const client = createClient({

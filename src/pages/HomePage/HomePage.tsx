@@ -1,10 +1,10 @@
 import { gql, useQuery } from "urql";
 import { Link, useSearchParams } from "react-router-dom";
 import styles from "./HomePage.module.css";
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Characters } from "../generated/graphql";
-import { Loader } from "../components/Loader/Loader";
+import { Characters } from "../../generated/graphql";
+import { Loader } from "../../components/Loader/Loader";
 
 
 export const query = gql`

@@ -4,7 +4,7 @@ import style from "./Header.module.css";
 const Header = () => {
 
     return (
-        <h1 className={style["header"]}>CHARACTERS FROM RICK AND MORTY</h1>
+        <h1 className={style["header"]}><img src="/AssetRM.svg" alt="logo" />CHARACTERS FROM RICK AND MORTY</h1>
     )
 }
 export default Header;
