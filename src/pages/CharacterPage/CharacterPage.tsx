@@ -76,7 +76,7 @@ const CharacterPage = () => {
               <img className={styles.arrow} src="/arrow-left.svg" alt="arrow" /></button>
             <h2 className={styles.header}>{character.name}</h2>
           </div>
-          {character.image && <img src={character.image} alt={character.name ?? "Unknown"} />}
+          {character.image && <img className={styles.characterImg} src={character.image} alt={character.name ?? "Unknown"} />}
           <p className={styles.characterPropS}>Status: {character.status}</p>
           <p className={styles.characterProp}>Species: {character.species}</p>
           <p className={styles.characterProp}>Gender: {character.gender}</p>

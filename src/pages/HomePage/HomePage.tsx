@@ -112,10 +112,9 @@ const HomePage = () => {
                 character && character.id && (
                   <Link data-cy="character-card" to={`/character/${character.id}`} key={character.id} className={styles.characterCard}>
                     {character.image && (
-                      <img
+                      <img className={styles.characterImage}
                         src={character.image}
                         alt={character.name || "Unknown"}
-                        className={styles.characterImage}
                       />
                     )}
                     <p className={styles.characterName}>{character.name || "Unknown"}</p>
